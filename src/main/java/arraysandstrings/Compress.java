@@ -18,25 +18,19 @@ public class Compress {
         StringBuilder sb = new StringBuilder();
 
         for (char c : chars) {
-            curCount++;
+
             if (c != curChar && curChar != '\0') {
                 sb.append(curChar);
                 sb.append(curCount);
-                curCount = 1;
+                curCount = 0;
             }
-            curChar = c;
 
-//            if (curChar == '\0') {
-//
-//            } else if (c != curChar && curChar != '\0') {
-//                sb.append(curChar);
-//                sb.append(curCount);
-//                curCount = 1;
-//            } else {
-//                curCount++;
-//            }
-//            curChar = c;
+            curCount++;
+            curChar = c;
         }
+        sb.append(curChar);
+        sb.append(curCount);
+
         String newString = sb.toString();
         return newString.length() < s.length() ? newString : s;
     }
@@ -44,5 +38,12 @@ public class Compress {
     public static void main(String[] args) {
         String s1 = "aabcccccaaa";
         System.out.println(compress(s1));
+
+        String s2 = "aabcde";
+        System.out.println(compress(s2));
+
+        String s3 = "aabcccccaaadjpppwwwww";
+        System.out.println(compress(s3));
+
     }
 }
